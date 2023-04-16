@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mobile Shop</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #f2f2f2;
+		}
+		
+		h1 {
+			text-align: center;
+			padding: 20px;
+			background-color: #333;
+			color: white;
+			margin: 0;
+		}
+		
+		form {
+			width: 80%;
+			margin: 0 auto;
+			background-color: white;
+			padding: 20px;
+			box-shadow: 0 0 10px rgba(0,0,0,0.2);
+		}
+		
+		label {
+			display: block;
+			margin-bottom: 5px;
+			font-weight: bold;
+		}
+		
+		input[type=text], input[type=email], input[type=tel], textarea {
+			width: 100%;
+			padding: 10px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			margin-bottom: 10px;
+			box-sizing: border-box;
+			font-size: 16px;
+		}
+		
+		input[type=submit] {
+			background-color: #333;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			font-size: 16px;
+			cursor: pointer;
+		}
+		
+		input[type=submit]:hover {
+			background-color: #555;
+		}
+		
+		input[type=submit]:focus {
+			outline: none;
+		}
+		
+		.error {
+			color: red;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+	</style>
+	<script>
+		function validateForm() {
+			var name = document.forms["myForm"]["name"].value;
+			var email = document.forms["myForm"]["email"].value;
+			var phone = document.forms["myForm"]["phone"].value;
+			
+			if (name == "" || email == "" || phone == "") {
+				document.getElementById("error").innerHTML = "All fields must be filled out";
+				return false;
+			}
+			
+			if (!validateEmail(email)) {
+				document.getElementById("error").innerHTML = "Invalid email format";
+				return false;
+			}
+			
+			if (!validatePhone(phone)) {
+				document.getElementById("error").innerHTML = "Invalid phone number format";
+				return false;
+			}
+		}
+		
+		function validateEmail(email) {
+			var re = /\S+@\S+\.\S+/;
+			return re.test(email);
+		}
+		
+		function validatePhone(phone) {
+			var re = /^\d{10}$/;
+			return re.test(phone);
+		}
+	</script>
+</head>
+<body>
+	<h1>Mobile Shop</h1>
+	<form name="myForm" onsubmit="return validateForm()" method="post">
+		<div id="error"></div>
+		<label for="name">Name:</label>
+		<input type="text" id="name" name="name" required><br>
+		
+		<label for="email">Email:</label>
+		<input type="email" id="email" name="email" required><br>
+		
+		<label for="phone">Phone:</label>
+		<input type="tel" id="phone" name="phone" required><br>
+		
+		<label for="message">Message:</label><br>
+		<input type="tel" id="phone" name="phone" required><br>
+		 <input type="submit" value="Submit">
+  </form>
